@@ -1,0 +1,5 @@
+class Article < ActiveRecord::Base
+
+  belong_to :user
+  has_many :comments, :dependent => :destroy
+end
