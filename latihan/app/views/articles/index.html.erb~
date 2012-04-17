@@ -1,0 +1,28 @@
+<hr></hr>
+<h3>Listing Article</h3>
+<hr></hr><br />
+
+  <% @articles.each do |article| %>
+  <table>
+    <tr>
+      <td>Title</td>
+      <td> : </td>
+      <td> <%= article.title %></td>
+    </tr>
+    <tr>
+      <td>Body</td>
+      <td> : </td>
+      <td><%= article.body %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><%= link_to 'See detail', article_path(article.id) %>
+        <% if article.user_id==current_user.id %>
+        |<%= link_to 'Edit', edit_article_path(article.id) %>|<%= link_to "Delete", article_path(article.id), :confirm => "Are you sure you want to delete this item ?", :method => :delete %>
+      <% end %>
+      </td>
+    </tr>
+</table>
+  <hr />
+  <% end %>

@@ -1,2 +1,8 @@
 class Category < ActiveRecord::Base
+  has_many :products, :dependent => :destroy
+  has_many :child_categories, :class_name => "Category", :foreign_key => "parent_id"
+  has_many :parent_category, :class_name => "Category", :foreign_key => "parent_id"
+
+  #scope :parent, lambda {|parent_id| where("parent_id IS NULL")}
+  #scope :child, lambda {where("parent_id = ?",id)}
 end

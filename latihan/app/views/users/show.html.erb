@@ -1,0 +1,46 @@
+<hr></hr>
+<h3>User Profile</h3>
+<hr></hr><br />
+  <%# @@user.each do |@user| %>
+  <table>
+    <tr>
+      <td>Login</td>
+      <td> : </td>
+      <td> <%= @user.name %></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td> : </td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td> : </td>
+      <td><%= @user.email %></td>
+    </tr>  
+    <tr>
+      <td>Address</td>
+      <td> : </td>
+      <td><%= @user.address %></td>
+    </tr>
+    <tr>
+      <td>Phone Number</td>
+      <td> : </td>
+      <td><%= @user.phone_number %></td>
+    </tr>
+    <tr>
+      <td>Birthday</td>
+      <td> : </td>
+      <td><%= @user.birthday %></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td> : </td>
+      <td>
+        <% gender = (@user.gender == true) ? "Male" : "Female" %>
+        <%= gender %>
+      </td>
+    </tr>
+  </table>
+  <%= link_to 'Back', root_url %>
+  <%# end %>

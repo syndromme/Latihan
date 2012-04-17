@@ -1,0 +1,43 @@
+<hr></hr>
+<h3>Listing Products</h3>
+<hr></hr>
+  <% @products.each do |product| %>
+    <div class="product">
+      Name : <%= product.name %><br />
+      Price : <%= product.price %><br /><br />
+      <%= link_to 'Detail', product_path(product.id) %>
+        <% if current_user != nil and product.user_id==current_user.id %>
+        |<%= link_to 'Edit', edit_product_path(product.id) %>|<%= link_to "Delete", product_path(product.id), :confirm => "Are you sure you want to delete this item ?", :method => :delete %>
+      <% end %>
+    </div>
+  <% end %> 
+
+<br /><br /><br /><br />
+<hr></hr>
+<h3>Listing Article</h3>
+<hr></hr><br />
+
+  <% @articles.each do |article| %>
+  <table>
+    <tr>
+      <td>Title</td>
+      <td> : </td>
+      <td> <%= article.title %></td>
+    </tr>
+    <tr>
+      <td>Body</td>
+      <td> : </td>
+      <td><%= article.body %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><%= link_to 'See detail', article_path(article.id) %>
+         <% if current_user != nil and article.user_id==current_user.id %>
+        |<%= link_to 'Edit', edit_article_path(article.id) %>|<%= link_to "Delete", article_path(article.id), :confirm => "Are you sure you want to delete this item ?", :method => :delete %>
+      <% end %>
+      </td>
+    </tr>
+</table>
+  <hr />
+  <% end %>

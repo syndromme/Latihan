@@ -1,0 +1,15 @@
+class ProductController < ApplicationController
+
+  def new
+    @product = Product.new
+  end
+
+  def create
+    if @product.save
+        redirect_to root_url, :notice => "Sign Up !"
+        #UserMailer.registration_confirmation(@user).deliver
+    else
+      render "new"
+    end
+  end
+end

@@ -1,0 +1,26 @@
+<hr></hr>
+<h3>Detail Article</h3>
+<hr></hr><br />
+  <table>
+    <tr>
+      <td>Title</td>
+      <td> : </td>
+      <td> <%= @article.title %></td>
+    </tr>
+    <tr>  
+      <td>Body</td>
+      <td> : </td>
+      <td><%= @article.body %></tr>
+  </table>
+  <hr />
+  <h2> Comments Here !!!</h2>
+  <hr />
+  <div id="comments">
+    <%= render :partial => "comments", :locals => {:comments => @comments} %>
+  </div><br /><br />
+
+  <%= form_for @comment, :url => comments_path, :remote => true do |i| %>
+    <%= i.text_area :comment %><br />
+    <%= i.hidden_field :article_id, :value => @article.id %>
+    <%= submit_tag "Comment" %><%= link_to 'Back', articles_path %>
+  <% end %>

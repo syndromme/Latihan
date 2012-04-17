@@ -1,0 +1,17 @@
+class CommentsController < ApplicationController
+  before_filter :require_login, :only => [:new, :create, :edit, :update, :destroy, :show]
+  def create
+    #render :text => params[:comment]
+    @comment = Comment.new(params[:comment])
+    @comments = Comment.where("article_id=#{@comment.article_id}")
+    respond_to do |format|
+      @comment.user_id=current_user.id
+      if @comment.save
+        format.html { redirect_to(article_path(@comment.article_id), :notice => 'Comment was successfully created.') }
+        format.js
+      else
+        flash.now[:error] = "Could not save comment"
+      end
+    end
+  end
+end

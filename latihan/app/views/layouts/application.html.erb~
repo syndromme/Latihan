@@ -7,8 +7,81 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="container">
+    <div id="header">
+      <center>
+        <h1><strong>Welcome to my store</strong></h1>
+      </center>
+      <div class="kotak-menu">
+        <ul class="menu">
+          <li>
+            <% if current_user==nil %>
+              <%= link_to "Sign Up", new_user_path %>
+            <% else %>
+              <%= link_to 'Home', root_url %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to 'Product', products_path %>
+          </li>
+          <li>
+            <%= link_to 'Article', articles_path %>
+          </li>
+          <% if current_user!=nil and current_user.is_admin? %>
+            <li>
+              <%= link_to 'Category', admin_categories_path %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="content">
+        <div class="sidebar">
+          <div class="kotak-side-menu">
+          <% if current_user==nil %>
+            <%= form_tag sessions_path do %> 
+              <p> 
+                <%= label_tag :email %><br /> 
+                <%= text_field_tag :email, params[:email] %> 
+              </p> 
+              <p> 
+                <%= label_tag :password %><br /> 
+                <%= password_field_tag :password %> 
+              </p> 
+              <p class="button"><%= submit_tag "Login" %>
+              </p> 
+            <% end %> 
+          <% else %>
+            <%= raw(welcome_text) %>
+          <% end %>
+          </div>
+            <% if current_user==nil %>
+            <% else %>
+              <div class="kotak-side-menu">
+                <ul>
+                  <% @parent=Category.where(["parent_id IS NULL"]) %>
+                  <% @parent.each do |parent| %>
+                    <li><%= parent.name %>
+                    <% @child=Category.where(["parent_id=?",parent.id]) %>
+                    <% unless @child == nil %>
+                      <ul>
+                        <% @child.each do |child| %>
+                          <li><%= child.name %></li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+        </div>
+        <div class="isi">
+          <%= yield %>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
 </body>
 </html>

@@ -1,0 +1,19 @@
+module ApplicationHelper
+  def welcome_text
+    str = ""
+    if current_user
+      str = "Welcome, "
+      str += link_to '#{current_user.name}', user_path(current_user.id)
+      str += "<br /><br /><br /><br />"
+      str += link_to "Edit Profile", edit_user_path(current_user.id)
+      str += "<br />"
+      str += link_to "Sell a Product", new_product_path
+      str += "<br />"
+      str += link_to "Share an Article", new_article_path
+      str += "<br />"
+      str += link_to "Logout", log_out_path
+    else
+      str =""
+    end
+  end
+end

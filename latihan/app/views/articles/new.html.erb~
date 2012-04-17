@@ -1,0 +1,30 @@
+<hr></hr>
+<h3>New Article</h3>
+<hr></hr>
+<%= form_for @article do |f| %>
+  <% if @article.errors.any? %>
+    <div id="errorExplanation">
+      <h2>
+         <%= pluralize(@article.errors.count, "error") %> prohibited this Product from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+  <tr>
+    <td><%= f.label :title %></td>
+    <td> : </td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :body %></td>
+    <td> : </td>
+    <td><%= f.text_area :body %></td>
+  </tr>
+  </table>
+  <%= f.submit "Save" %>
+  <% end %>

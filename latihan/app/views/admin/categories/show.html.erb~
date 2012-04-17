@@ -1,0 +1,22 @@
+<hr></hr>
+<h3>Detail Category</h3>
+<hr></hr><br />
+  <table>
+    <tr>
+      <td>Name</td>
+      <td> : </td>
+      <td> <%= @category.name %></td>
+    </tr>
+    <tr>  
+      <td>Parent Category</td>
+      <td> : </td>
+      <td><% if @category.parent_id == nil %>
+          <%= "-" %>
+        <% else %>
+          <% category=Category.find_by_id(@category.parent_id) %>
+          <%= category.name %>
+        <% end %>
+    </tr>
+  </table>
+  <br />  <br />
+  <%= link_to 'Back', root_url %>

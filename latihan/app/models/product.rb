@@ -1,4 +1,4 @@
 class Product < ActiveRecord::Base
-  belong_to :user
-  belong_to :category
+  belongs_to :user
+  belongs_to :category
 end

@@ -1,0 +1,76 @@
+<hr></hr>
+<h3>New User</h3>
+<hr></hr>
+<%= form_for @user do |f| %> 
+  <% if @user.errors.any? %> 
+    <div class="error_messages"> 
+      <h2>Form is invalid</h2> 
+      <ul> 
+        <% for message in @user.errors.full_messages %> 
+          <li><%= message %></li> 
+        <% end %> 
+      </ul> 
+    </div> 
+  <% end %>
+  <table>
+  <tr>
+    <td><%= f.label :name %></td>
+    <td> : </td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr> 
+    <td><%= f.label :address %></td>
+    <td> : </td>
+    <td><%= f.text_area :address %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :phone_number %></td>
+    <td> : </td>
+    <td><%= f.text_field :phone_number %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :birthday %></td>
+    <td> : </td>
+    <td><%= f.date_select :birthday, :start_year => 1980, :end_year => 2012, :order => [:day, :month, :year], :use_short_month => true  %></td>
+  </tr>
+  <tr> 
+    <td><%= f.label :gender %></td>
+    <td> : </td>
+    <td><%= f.radio_button :gender, true %> <%= f.label :gender, "Male" %></td>
+    <td><%= f.radio_button :gender, false %> <%= f.label :gender, "Female" %></td
+  </tr> 
+  <tr> 
+    <td><%= f.label :facebook %></td>
+    <td> : </td>
+    <td><%= f.text_field :facebook %> </td>
+  </tr> 
+  <tr> 
+    <td><%= f.label :blog %></td>
+    <td> : </td>
+    <td><%= f.text_field :blog %> </td>
+  </tr> 
+  <tr> 
+    <td><%= f.label :email %></td>
+    <td> : </td>
+    <td><%= f.text_field :email %> </td>
+  </tr> 
+  <tr> 
+    <td><%= f.label :password %></td>
+    <td> : </td>
+    <td><%= f.password_field :password %> </td>
+  </tr> 
+  <tr> 
+    <td><%= f.label :password_confirmation %> </td>
+    <td> : </td>
+    <td><%= f.password_field :password_confirmation %> </td>
+  </tr>
+  <tr>
+    <td>Recaptcha</td>
+    <td> : </td>
+    <td> <%= recaptcha_tags %></td>
+  </tr>
+</table>
+<center> 
+<div class="button"><%= f.submit "Save" %>
+</center>
+<% end %>

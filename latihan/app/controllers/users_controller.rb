@@ -1,0 +1,45 @@
+class UsersController < ApplicationController
+  #before_filter :require_login, :only => [:new, :create, :edit, :update, :destroy, :show]
+  before_filter :find_user, :only => [:show, :edit, :update]
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(params[:user])
+    if verify_recaptcha
+      if @user.save
+        redirect_to root_url, :notice => "Sign Up !"
+        UserMailer.registration_confirmation(@user).deliver
+      else
+        render "new"
+      end
+    else
+      flash[:error] = "There was an error with the recaptcha code below.
+                      Please re-enter the code and click submit."
+     render "new"
+    end
+  end
+
+  def show
+    #@user = User.find_by_id(current_user.id)
+  end
+
+  def edit
+    #@user=User.find_by_id(current_user.id)
+  end
+
+  def update
+    #@user=User.find_by_id(current_user.id)
+    @user.update_attributes(params[:user])
+    redirect_to root_url
+  end
+
+  private
+  def find_user
+    @user=User.find_by_id(current_user.id)
+    if @user.id == nil#session[:user_id]
+      redirect_to root_url
+    end
+  end
+end

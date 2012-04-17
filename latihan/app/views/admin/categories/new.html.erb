@@ -1,0 +1,33 @@
+<hr></hr>
+<h3>New Category</h3>
+<hr></hr>
+  <% if @category.errors.any? %>
+    <div id="errorExplanation">
+      <h2>
+         <%= pluralize(@category.errors.count, "error") %> prohibited this Category from being saved:
+      </h2>
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for @category, :url=>admin_categories_path do |f| %>
+  <table>
+  <tr>
+    <td><%= f.label :name %></td>
+    <td> : </td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :parent_id %></td>
+    <td> : </td>
+    <td> <% @parent_category = Category.where(["parent_id IS NULL"]).map{|x| [x.name, x.id]} %>
+         <%= f.select :parent_id, @parent_category, { :include_blank => true } %>
+    </td>
+  </tr>
+  </table>
+  <%= f.submit "Save" %>
+  <% end %>

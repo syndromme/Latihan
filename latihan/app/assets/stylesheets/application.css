@@ -5,3 +5,124 @@
  *= require_self
  *= require_tree . 
 */
+
+#container{
+  height: 1000px;
+  width: 1000px;
+  border: 1px solid #FFF;
+  margin: 10px auto;
+}
+
+#header{
+  width: 1000px;
+  height: 100px;
+  border-bottom: 4px solid #000;
+  background: #FFF;
+  margin: 0px 0px 10px 0px;
+}
+
+h1{
+  color: #000;
+  top: 50px;
+  position: relative;
+}
+
+#header .kotak-menu{
+  border: 1px solid #FFF;
+  height: 50px;
+  width: 1000px;
+  top: 40px;
+  position: relative;
+}
+
+#header ul.menu {
+  list-style: none;
+  padding: 0;
+}
+
+#header ul.menu li {
+  display: block;
+  float: left;
+  padding: 0 10px;
+}
+
+#header ul.menu li a{
+  color: #66CCCC;
+  text-decoration: none;
+}
+
+#header ul li a:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+#content{
+  height: 850px;
+  width: 1000px;
+  margin-top: 50px;
+}
+
+#content .sidebar{
+  /*border: 1px solid #FFF;*/
+  height: 500px;
+  width: 250px;
+  margin: 0 auto;
+  float: left;
+}
+
+#content .kotak-side-menu{
+  color: #000;
+  /*border: 1px solid #000;*/
+  height: 170px;
+  background: #FFF;
+  text-align: left;
+  padding: 0 5px 0 5px;
+}
+
+#content .kotak-side-menu ul.menu {
+  list-style: none;
+  left: 50px;
+  position: relative;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #66CCCC;
+}
+
+#content .isi{
+  /*border: 1px solid #000;*/
+  height: 813px;
+  width: 700px;
+  margin: 0px auto;
+  float: right;
+  text-align: left;
+  padding: 10px;
+}
+
+#content .isi .product{
+  border: 1px solid #000;
+  height: 70px;
+  width: 200px;
+  float: left;
+  padding: 10px;
+  margin: 5px;
+}
+
+#content .isi .menu-title{
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 50px;
+  width: 490px;
+  top: 20px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+

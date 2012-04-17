@@ -1,0 +1,35 @@
+<hr></hr>
+<h3>Categories</h3>
+<hr></hr><br />
+  <%= link_to 'New Category', new_admin_category_path %><br /><br />
+  <table>
+    <tr>
+      <th><center>Name</center></th>
+      <th><center>Parent Category </center></th>
+      <th><center>Action</center></th>
+    </tr>
+      <% @categories.each do |category| %>
+    <tr>
+      <td> <%= category.name %></td>
+      <td> <%= "-" %> </td>
+      <td>
+        <%= link_to 'Show', admin_category_path(category.id) %>|
+        <%= link_to 'Edit', edit_admin_category_path(category.id) %>|
+        <%= link_to "Delete", admin_category_path(category.id), :confirm => "Are you sure you want to delete this item ?", :method => :delete %>
+      </td>
+        <% @child=Category.where(["parent_id=?",category.id]) %>
+          <% @child.each do |child| %>
+            <tr>
+              <td><%= child.name %></td>
+              <td><%= category.name %></td>
+              <td>
+                <%= link_to 'Show', admin_category_path(category.id) %>|
+                <%= link_to 'Edit', edit_admin_category_path(category.id) %>|
+                <%= link_to "Delete", admin_category_path(category.id), :confirm => "Are you sure you want to delete this item ?", :method => :delete %>
+              </td>
+            </tr>
+          <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>

@@ -1,0 +1,48 @@
+<hr></hr>
+<h3>New Product</h3>
+<hr></hr>
+  <% if @product.errors.any? %>
+    <div id="errorExplanation">
+      <h2>
+         <%= pluralize(@product.errors.count, "error") %> prohibited this Product from being saved:
+      </h2>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for @product do |f| %>
+  <table>
+  <tr>
+    <td><%= f.label :name %></td>
+    <td> : </td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :description %></td>
+    <td> : </td>
+    <td><%= f.text_field :description %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :price %></td>
+    <td> : </td>
+    <td><%= f.text_field :price %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :weight %></td>
+    <td> : </td>
+    <td><%= f.text_field :weight %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :category_id %></td>
+    <td> : </td>
+    <td> <% @category_id = Category.where(["parent_id IS NOT NULL"]).map{|x| [x.name, x.id]} %>
+         <%= f.select :category_id, @category_id, { :include_blank => false } %>
+    </td>
+  </tr>
+  </table>
+  <%= f.submit "Save" %>
+  <% end %>
